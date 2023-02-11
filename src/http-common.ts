@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 
-const apiClient: AxiosInstance = axios.create({
+const apiClient = axios.create({
   // APIのURI
   baseURL: "http://localhost:8080",
   // リクエストヘッダ
