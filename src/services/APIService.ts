@@ -1,11 +1,20 @@
-import http from "@/http-common";
+import axios from 'axios';
+
+const apiClient = axios.create({
+    // APIのURI
+    baseURL: "http://localhost:8080",
+    // リクエストヘッダ
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
 
 class APIService {
     createUser(data: any): Promise<any> {
-        return http.post("/users", data);
+        return apiClient.post("/users", data);
     }
     loginUser(data: any): Promise<any> {
-        return http.post("/api/users/login", data);
+        return apiClient.post("/api/users/login", data);
     }
 }
 
