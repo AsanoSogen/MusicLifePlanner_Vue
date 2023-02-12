@@ -8,10 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/main.css'
-import 'fa-icons';
 
 const app = createApp(App)
-
 app.use(createPinia())
 app.use(router)
 

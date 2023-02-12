@@ -38,6 +38,7 @@
 </template>
 <script setup lang="ts">
 import APIService from '../services/APIService';
+import router from '../router'
 const data = {
   email: null,
   password: null,
@@ -47,11 +48,17 @@ const login = () => {
   APIService.loginUser(data)
   .then(response => {
     console.log(response);
+    router.push({name: '/'});
   })
   .catch(error => {
     console.log(error);
-    console.log(data);
   });
 };
+
+router.beforeEach((to) => {
+  if (to.meta.requiresAuth && localStorage.getItem("token") == null) {
+    return { name: "login" };
+  }
+});
 
 </script>
