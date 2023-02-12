@@ -11,11 +11,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {
-    rollupOptions: {
-      external: ['axios'],
-    }
-  },
+  // build: {
+  //   rollupOptions: {
+  //     external: ['axios'],
+  //   }
+  // },
   server: {
     proxy: {
       '^/api': {
