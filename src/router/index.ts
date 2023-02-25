@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue'
 import SignUp from '../views/UserRegisterView.vue'
 import Login from '../views/LoginView.vue'
-import {CognitoUserPool} from 'amazon-cognito-identity-js'
+import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { checkTimeout, resetTimer } from './countdown';
 import { Auth } from 'aws-amplify';
 
 const poolData = {
@@ -40,17 +41,28 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   let currentUser = userPool.getCurrentUser();
+
+  // アクションが行われた時刻でタイマーをリセットする
+  resetTimer();
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!currentUser) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
       })
+    } else if (checkTimeout()) {
+      // タイムアウトした場合はログインページにリダイレクトする
+      Auth.signOut().then(() => {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        });
+      });
     } else {
       next();
     }
   } else {
-    Auth.signOut();
     next();
   }
 });
