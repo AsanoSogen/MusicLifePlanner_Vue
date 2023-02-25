@@ -2,11 +2,11 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Arial Black";
+  font-family: "Open Suns";
   background: #6bc5e9 !important;
   min-height: 100vh;
   display: flex;
-  font-weight: 400;
+  font-weight: 200;
 }
 body,
 html,

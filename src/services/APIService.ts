@@ -11,7 +11,7 @@ const apiClient = axios.create({
 
 class APIService {
     createUser(data: any): Promise<any> {
-        return apiClient.post("/users", data);
+        return apiClient.post("/api/users", data);
     }
     loginUser(data: any): Promise<any> {
         return apiClient.post("/api/users/login", data);

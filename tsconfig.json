@@ -5,7 +5,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": [
+      "node"
+    ],
+    "skipLibCheck": true,
   },
 
   "references": [
